@@ -1,33 +1,55 @@
-#include <stdio.h>
+#include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
 #include "tel.h"
 
-// 사용법 출력
-void tel_how() 
-{
-	printf("tel to show tips\ntel word to search\ntel -a to add\ntel -d to delete\ntel -l to print\n");
-}
-
 // search
-int tel_search(PHONE *list, char *input, int size) 
+int tel_search(PHONE *list, int size) 
 {
+	int yMax, xMax; 
+	char *input;
+	getmaxyx(stdscr, yMax, xMax);
+
+	WINDOW *searchwin = newwin(yMax-10, xMax-20, 2, 10);
+	box(searchwin, 0, 0);
+
+	refresh();
+	wrefresh(searchwin);
+
+	mvwscanw(searchwin, 1, 2, "%s", input);
 	int count = 0;
 	// 각 PHONE구조체의 필드에서 입력된 문자열이 있는지 검사하여 있으면 출력하고 count 증가
 	for(int i = 0; i < size; i++) {
 		if (strstr(list[i].name, input) != NULL||
 			strstr(list[i].phone, input) != NULL ||
 			strstr(list[i].memo, input) != NULL ) {
-			printf("%d %s %s %s", ++count, list[i].name, list[i].phone, list[i].memo);
+			mvwprintw(searchwin, i, 2, "%d %s %s %s", count, list[i].name, list[i].phone, list[i].memo);
 		}
 	}
+	refresh();
+	wrefresh(searchwin);
+	getch();
+	endwin();
 	return count;
 }
 
 // add
-void tel_add(PHONE *list, char *name, char *phone, char *memo, int size) 
+/*
+void tel_add(PHONE *list, int size) 
 {	
 	// 입력된 정보 확인, add 여부 확인
+	char *name, *phone, *memo;
+
+	int yMax, xMax; 
+	char *input;
+	getmaxyx(stdscr, yMax, xMax);
+
+	WINDOW *addwin = newwin(yMax-10, xMax-20, 2, 10);
+	box(addwin, 0, 0);
+
+	refresh();
+	wrefresh(addwin);
+
 	printf("\n%s %s %s\n\nadd? [Y/N]: ", name, phone, memo);
 	char ch = getchar();
 	if (ch == 'Y') {
@@ -96,27 +118,42 @@ void tel_del(PHONE *list, char *input, int size)
 		}
 		fclose(fp);
 	}
+	endwin();
 }
+
+//update
+void tel_update(PHONE *list, int size)
+{
+
+}
+*/
 
 // list
 void tel_print(PHONE *list, int size) 
 {
+	int yMax, xMax; 
+	getmaxyx(stdscr, yMax, xMax);
+
+	WINDOW *listwin = newwin(yMax-10, xMax-20, 2, 10);
+	box(listwin, 0, 0);
+	refresh();
+	wrefresh(listwin);
+
 	PHONE tmp;
-	// 요소가 0개면 오류메세지 출력, 1개 이하이면 그냥 출력
-	if (size == 0) {
-		printf("empty\n");
-	}
 	if (size == 1) {
 		for(int i = 0; i < size; i++) {
-			printf("%d %s %s %s", i+1, list[i].name, list[i].phone, list[i].memo);
+			mvwprintw(listwin, i+1, 2, "%d %s %s %s", i+1, list[i].name, list[i].phone, list[i].memo);
 		}
 	}
-	// 요소가 2개 이상이면 name필드를 strcmp로 qsort하여 알파벳순 정렬
 	else if (size >= 2) {
 		qsort(list, size, sizeof(PHONE), strcmp);
 		for(int i = 0; i < size; i++) {
-			printf("%d %s %s %s", i+1, list[i].name, list[i].phone, list[i].memo);
+			mvwprintw(listwin, i+1, 2, "%d %s %s %s", i+1, list[i].name, list[i].phone, list[i].memo);
 		}	
 	}
+	refresh();
+	wrefresh(listwin);
+	getch();
+	endwin();
 }
 

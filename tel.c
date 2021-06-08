@@ -1,9 +1,9 @@
-#include <stdio.h>
+#include <ncurses.h>
 #include <stdlib.h>
 #include <string.h>
 #include "tel.h"
 
-int main(int argc, char *argv[])
+int main(void)
 {
 	PHONE *list = (PHONE *)malloc(sizeof(PHONE) * 100); // PHONE 구조체 배열 동적으로 선언
 	int count = 0; // 저장된 요소의 개수
@@ -24,35 +24,13 @@ int main(int argc, char *argv[])
 	}
 	fclose(fp);
 
-	// 기본 작동
-	if (argc == 1) {
-		tel_how();
-		return 0;
-	}
-	// command line args로 옵션 입력 시
-	else if (argc > 1) {
-		// "-a" 입력 시
-		if (strcmp(argv[1], "-a") == 0) {
-			tel_add(list, argv[2], argv[3], argv[4], count);
-		}
-		// "-d" 입력 시
-		else if (strcmp(argv[1], "-d") == 0) {
-			tel_del(list, argv[2], count);
-		}
-		// "-l" 입력 시	
-		else if (strcmp(argv[1], "-l") == 0) {
+	int input = menu();
+
+	switch (input) {
+		case 0:
+			tel_search(list, count);
+		case 4:
 			tel_print(list, count);
-		}
-		// 검색할 문자열 입력 시
-		else if (argc == 2) {
-			int c = tel_search(list, argv[1], count);
-			if (c == 0) {
-				printf("\nno match found.\n");
-			}
-			else {
-				printf("\nmatch found.\n");
-			}
-		}
 	}
 	return 0;
 }
