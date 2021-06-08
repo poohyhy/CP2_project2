@@ -7,7 +7,7 @@
 int tel_search(PHONE *list, int size) 
 {
 	int yMax, xMax; 
-	char *input;
+	char *input = (char *)malloc(sizeof(char) * 40);
 	getmaxyx(stdscr, yMax, xMax);
 
 	WINDOW *searchwin = newwin(yMax-10, xMax-20, 2, 10);
@@ -16,7 +16,7 @@ int tel_search(PHONE *list, int size)
 	refresh();
 	wrefresh(searchwin);
 
-	mvwscanw(searchwin, 1, 2, "%s", input);
+	mvwscanw(searchwin, 1, 1, "%s", &input);
 	int count = 0;
 	// 각 PHONE구조체의 필드에서 입력된 문자열이 있는지 검사하여 있으면 출력하고 count 증가
 	for(int i = 0; i < size; i++) {
@@ -139,7 +139,6 @@ void tel_print(PHONE *list, int size)
 	refresh();
 	wrefresh(listwin);
 
-	PHONE tmp;
 	if (size == 1) {
 		for(int i = 0; i < size; i++) {
 			mvwprintw(listwin, i+1, 2, "%d %s %s %s", i+1, list[i].name, list[i].phone, list[i].memo);
