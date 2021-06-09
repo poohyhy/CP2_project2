@@ -23,7 +23,8 @@ int tel_search(PHONE *list, int size)
 		if (strstr(list[i].name, input) != NULL||
 			strstr(list[i].phone, input) != NULL ||
 			strstr(list[i].memo, input) != NULL ) {
-			mvwprintw(searchwin, i, 2, "%d %s %s %s", count, list[i].name, list[i].phone, list[i].memo);
+			mvwprintw(searchwin, i, 2, "%d %s %s %s", count, 
+				list[i].name, list[i].phone, list[i].memo);
 		}
 	}
 	refresh();
@@ -131,6 +132,11 @@ void tel_update(PHONE *list, int size)
 // list
 void tel_print(PHONE *list, int size) 
 {
+	initscr();
+	cbreak();
+	noecho();
+	refresh();
+
 	int yMax, xMax; 
 	getmaxyx(stdscr, yMax, xMax);
 
@@ -153,6 +159,6 @@ void tel_print(PHONE *list, int size)
 	refresh();
 	wrefresh(listwin);
 	getch();
-	endwin();
+	menu();
 }
 
