@@ -130,6 +130,15 @@ void tel_update(PHONE *list, int size)
 */
 
 // list
+
+int cmpstr(void const *a, void const *b) 
+{
+    char const *aa = (char const *)a;
+    char const *bb = (char const *)b;
+
+    return strcmp(aa, bb);
+}
+
 void tel_print(PHONE *list, int size) 
 {
 	initscr();
@@ -151,7 +160,7 @@ void tel_print(PHONE *list, int size)
 		}
 	}
 	else if (size >= 2) {
-		qsort(list, size, sizeof(PHONE), strcmp);
+		qsort(list, size, sizeof(PHONE), cmpstr);
 		for(int i = 0; i < size; i++) {
 			mvwprintw(listwin, i+1, 2, "%d %s %s %s", i+1, list[i].name, list[i].phone, list[i].memo);
 		}	

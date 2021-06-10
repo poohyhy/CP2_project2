@@ -61,7 +61,7 @@ int menu(void)
 		case 4:
 			return 4;
 		case 5:
-			endwin();
+			return 5;
 		default:
 			return ERROR;
 	}

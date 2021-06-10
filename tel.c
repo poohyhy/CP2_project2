@@ -26,11 +26,19 @@ int main(void)
 
 	int input = menu();
 
-	switch (input) {
-		case 0:
-			tel_search(list, count);
-		case 4:
-			tel_print(list, count);
+	while(1) {
+		switch (input) {
+			case 0:
+				tel_search(list, count);
+				break;
+			case 4:
+				tel_print(list, count);
+				break;
+			case 5:
+				endwin();
+				break;
+		}
 	}
+	endwin();
 	return 0;
 }

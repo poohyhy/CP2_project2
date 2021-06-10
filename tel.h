@@ -14,3 +14,4 @@ int tel_search(PHONE *list, int size);
 void tel_print(PHONE *list, int size);
 //void tel_update(PHONE *list, char *name, char *phone, char *memo, int size);
 int menu();
+int cmpstr(void const *a, void const *b);
