@@ -5,29 +5,30 @@
 
 int main(void)
 {
+	PHONE *list = (PHONE *)malloc(sizeof(PHONE) * 100);
 	int count = 0;
 	//실행되면 menu.c에서 선택을 입력받아 선택에 맞는 기능 실행
 	while(1) {
 		int input = menu();
 
 		if (input == 0) {
-			#include "read.h"
+			count = tel_read(list);
 			tel_search(list, count);
 		}
 		if (input == 1) {
-			#include "read.h"
+			count = tel_read(list);
 			tel_add(list, count);
 		}
 		if (input == 2) {
-			#include "read.h"
+			count = tel_read(list);
 			tel_del(list, count);
 		}
 		if (input == 3) {
-			#include "read.h"
+			count = tel_read(list);
 			tel_up(list, count);
 		}
 		if (input == 4) {
-			#include "read.h"
+			count = tel_read(list);
 			tel_print(list, count);
 		}
 		if (input ==  5) {

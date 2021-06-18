@@ -13,5 +13,6 @@ void tel_add(PHONE *list, int size);
 void tel_del(PHONE *list, int size);
 void tel_print(PHONE *list, int size);
 void tel_up(PHONE *list, int size);
+int tel_read(PHONE *list);
 int menu();
 int cmpstr(void const *a, void const *b);
