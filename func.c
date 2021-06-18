@@ -260,7 +260,7 @@ void tel_up(PHONE *list, int size)
 		else
 			mvwprintw(upwin, count+17, 2, "update canceled.");
 	}
-	mvwprintw(upwin, 20, 3,"press any key to quit");
+	mvwprintw(upwin, 23, 3,"press any key to quit");
 	refresh();
 	wrefresh(upwin);
 	noecho();
