@@ -1,5 +1,4 @@
 #include <ncurses.h>
-#include <menu.h>
 #include "tel.h"
 
 #define ARRAY_SIZE(a)	(sizeof(a) / sizeof(a[0]))
