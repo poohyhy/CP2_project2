@@ -8,10 +8,15 @@ typedef struct PHONE {
 	char memo[40];
 } PHONE;
 
+typedef struct LIST_N_KEY {
+	PHONE *list;
+	int count;
+} LIST_N_KEY;
+
 int tel_search(PHONE *list, int size); 
-//void tel_add(PHONE *list, char *name, char *phone, char *memo, int size);
-//void tel_del(PHONE *list, char *input, int size);
+void tel_add(PHONE *list, int size);
+void tel_del(PHONE *list, int size);
 void tel_print(PHONE *list, int size);
-//void tel_update(PHONE *list, char *name, char *phone, char *memo, int size);
+void tel_up(PHONE *list, int size);
 int menu();
 int cmpstr(void const *a, void const *b);
