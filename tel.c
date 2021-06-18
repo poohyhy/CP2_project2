@@ -6,112 +6,28 @@
 int main(void)
 {
 	int count = 0;
+	//실행되면 menu.c에서 선택을 입력받아 선택에 맞는 기능 실행
 	while(1) {
 		int input = menu();
 
 		if (input == 0) {
-			PHONE *list = (PHONE *)malloc(sizeof(PHONE) * 100); // PHONE 구조체 배열 동적으로 선언
-			int count = 0; // 저장된 요소의 개수
-
-			// data.txt 파일 줄단위로 끝까지 읽어 ":"를 구분자로 하여 각 구조체의 필드 입력
-			FILE *fp = fopen("data.txt", "r");
-			while(!feof(fp)) {
-				char *line = (char *)malloc(sizeof(char) * MAX_PHONE_SIZE);
-				fgets(line, MAX_PHONE_SIZE, fp);
-				// 빈 줄이 있으면 건너뛰기
-				if (strcmp(line, "\0") == 0) {
-					continue;
-				}
-				strcpy(list[count].name, strtok(line, ":"));
-				strcpy(list[count].phone, strtok(NULL, ":"));
-				strcpy(list[count].memo, strtok(NULL, ":"));
-				count++;
-			}
-			fclose(fp);
+			#include "read.h"
 			tel_search(list, count);
 		}
 		if (input == 1) {
-			PHONE *list = (PHONE *)malloc(sizeof(PHONE) * 100); // PHONE 구조체 배열 동적으로 선언
-			int count = 0; // 저장된 요소의 개수
-
-			// data.txt 파일 줄단위로 끝까지 읽어 ":"를 구분자로 하여 각 구조체의 필드 입력
-			FILE *fp = fopen("data.txt", "r");
-			while(!feof(fp)) {
-				char *line = (char *)malloc(sizeof(char) * MAX_PHONE_SIZE);
-				fgets(line, MAX_PHONE_SIZE, fp);
-				// 빈 줄이 있으면 건너뛰기
-				if (strcmp(line, "\0") == 0) {
-					continue;
-				}
-				strcpy(list[count].name, strtok(line, ":"));
-				strcpy(list[count].phone, strtok(NULL, ":"));
-				strcpy(list[count].memo, strtok(NULL, ":"));
-				count++;
-			}
-			fclose(fp);
+			#include "read.h"
 			tel_add(list, count);
 		}
 		if (input == 2) {
-			PHONE *list = (PHONE *)malloc(sizeof(PHONE) * 100); // PHONE 구조체 배열 동적으로 선언
-			int count = 0; // 저장된 요소의 개수
-
-			// data.txt 파일 줄단위로 끝까지 읽어 ":"를 구분자로 하여 각 구조체의 필드 입력
-			FILE *fp = fopen("data.txt", "r");
-			while(!feof(fp)) {
-				char *line = (char *)malloc(sizeof(char) * MAX_PHONE_SIZE);
-				fgets(line, MAX_PHONE_SIZE, fp);
-				// 빈 줄이 있으면 건너뛰기
-				if (strcmp(line, "\0") == 0) {
-					continue;
-				}
-				strcpy(list[count].name, strtok(line, ":"));
-				strcpy(list[count].phone, strtok(NULL, ":"));
-				strcpy(list[count].memo, strtok(NULL, ":"));
-				count++;
-			}
-			fclose(fp);
+			#include "read.h"
 			tel_del(list, count);
 		}
 		if (input == 3) {
-			PHONE *list = (PHONE *)malloc(sizeof(PHONE) * 100); // PHONE 구조체 배열 동적으로 선언
-			int count = 0; // 저장된 요소의 개수
-
-			// data.txt 파일 줄단위로 끝까지 읽어 ":"를 구분자로 하여 각 구조체의 필드 입력
-			FILE *fp = fopen("data.txt", "r");
-			while(!feof(fp)) {
-				char *line = (char *)malloc(sizeof(char) * MAX_PHONE_SIZE);
-				fgets(line, MAX_PHONE_SIZE, fp);
-				// 빈 줄이 있으면 건너뛰기
-				if (strcmp(line, "\0") == 0) {
-					continue;
-				}
-				strcpy(list[count].name, strtok(line, ":"));
-				strcpy(list[count].phone, strtok(NULL, ":"));
-				strcpy(list[count].memo, strtok(NULL, ":"));
-				count++;
-			}
-			fclose(fp);
+			#include "read.h"
 			tel_up(list, count);
 		}
 		if (input == 4) {
-			PHONE *list = (PHONE *)malloc(sizeof(PHONE) * 100); // PHONE 구조체 배열 동적으로 선언
-			int count = 0; // 저장된 요소의 개수
-
-			// data.txt 파일 줄단위로 끝까지 읽어 ":"를 구분자로 하여 각 구조체의 필드 입력
-			FILE *fp = fopen("data.txt", "r");
-			while(!feof(fp)) {
-				char *line = (char *)malloc(sizeof(char) * MAX_PHONE_SIZE);
-				fgets(line, MAX_PHONE_SIZE, fp);
-				// 빈 줄이 있으면 건너뛰기
-				if (strcmp(line, "\0") == 0) {
-					continue;
-				}
-				strcpy(list[count].name, strtok(line, ":"));
-				strcpy(list[count].phone, strtok(NULL, ":"));
-				strcpy(list[count].memo, strtok(NULL, ":"));
-				count++;
-			}
-			fclose(fp);
+			#include "read.h"
 			tel_print(list, count);
 		}
 		if (input ==  5) {

@@ -15,7 +15,7 @@ int tel_search(PHONE *list, int size)
 
 	refresh();
 	wrefresh(searchwin);
-	mvwprintw(searchwin, 1, 2, "Enter string\n");
+	mvwprintw(searchwin, 1, 2, "Enter string to search\n");
 	echo();
 	mvwscanw(searchwin, 2, 2, "%s", &input);
 	int count = 0;
@@ -31,8 +31,10 @@ int tel_search(PHONE *list, int size)
 	if (count == 0) {
 		mvwprintw(searchwin, 3, 3,"no match");
 	}
+	mvwprintw(searchwin, 20, 3,"press any key to quit");
 	refresh();
 	wrefresh(searchwin);
+	
 	getch();
 	endwin();
 	return count;
@@ -92,9 +94,11 @@ void tel_add(PHONE *list, int size)
 	else {
 		mvwprintw(addwin, 10, 2, "add canceled");
 	}
+	mvwprintw(addwin, 20, 3,"press any key to quit");
 	refresh();
 	wrefresh(addwin);
 	noecho();
+	
 	getch();
 	endwin();
 }
@@ -116,7 +120,7 @@ void tel_del(PHONE *list, int size)
 	refresh();
 	wrefresh(delwin);
 
-	mvwprintw(delwin, 1, 2, "Enter del search");
+	mvwprintw(delwin, 1, 2, "Enter string to search");
 	echo();
 	mvwscanw(delwin, 2, 2, "%s", &input);
 
@@ -164,9 +168,11 @@ void tel_del(PHONE *list, int size)
 			mvwprintw(delwin, count+10, 2, "delete canceled.");
 		}
 	}
+	mvwprintw(delwin, 20, 3,"press any key to quit");
 	refresh();
 	wrefresh(delwin);
 	noecho();
+	
 	getch();
 	endwin();
 }
@@ -189,7 +195,7 @@ void tel_up(PHONE *list, int size)
 	refresh();
 	wrefresh(upwin);
 
-	mvwprintw(upwin, 1, 2, "enter input");
+	mvwprintw(upwin, 1, 2, "Enter string to search");
 	echo();
 	mvwscanw(upwin, 2, 2, "%s", &input);
 	for(int i = 0; i < size; i++) {
@@ -254,10 +260,11 @@ void tel_up(PHONE *list, int size)
 		else
 			mvwprintw(upwin, count+17, 2, "update canceled.");
 	}
-
+	mvwprintw(upwin, 20, 3,"press any key to quit");
 	refresh();
 	wrefresh(upwin);
 	noecho();
+	
 	getch();
 	endwin();
 }
@@ -299,8 +306,10 @@ void tel_print(PHONE *list, int size)
 			mvwprintw(listwin, i+1, 2, "%d %s %s %s", i+1, list[i].name, list[i].phone, list[i].memo);
 		}	
 	}
+	mvwprintw(listwin, 20, 3,"press any key to quit");
 	refresh();
 	wrefresh(listwin);
+	
 	getch();
 	endwin();
 }

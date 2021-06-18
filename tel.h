@@ -8,11 +8,6 @@ typedef struct PHONE {
 	char memo[40];
 } PHONE;
 
-typedef struct LIST_N_KEY {
-	PHONE *list;
-	int count;
-} LIST_N_KEY;
-
 int tel_search(PHONE *list, int size); 
 void tel_add(PHONE *list, int size);
 void tel_del(PHONE *list, int size);
